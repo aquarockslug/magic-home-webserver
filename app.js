@@ -61,7 +61,7 @@ var createTimeEmitter = async (interval = 5000) => {
 }
 var getRandomState = (on = "on") => {
         const r = [~~(Math.random() * 255), ~~(Math.random() * 255)]
-        if (r[0] > r[1]) r[1] = [r[0], r[0] = r[1]][0] // ensure r[0] < r[1]
+        if (r[0] > r[1])[r[1], r[0]] = [r[0], r[1]] // ensure r[0] < r[1]
         return {
                 on,
                 color: {
