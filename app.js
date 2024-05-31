@@ -4,8 +4,8 @@ const {
 Control.ackMask(0b0000)
 var sysinfo = require('systeminformation')
 var express = require('express')
-var EventEmitter = require('node:events');
 var app = express()
+var EventEmitter = require('node:events');
 app.use(express.static('public'))
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
