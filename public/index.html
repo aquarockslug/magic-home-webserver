@@ -7,6 +7,10 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="color-picker.min.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="button.css" />
+        <link rel="stylesheet" type="text/css" href="jquery-3.7.1.min.css" />
+        <script src="color-picker.js"></script>
+        <script src="jquery-3.7.1.min.js"></script>
+        <script src="jquery.gridster.js"></script>
         <script src="color-picker.js"></script>
         <style>
                 html {
@@ -16,9 +20,21 @@
                 body {
                         display: flex;
                         height: 75%;
+                        flex-direction: column;
                         justify-content: center;
                         align-items: stretch;
                         background-image: url("bg.jpg");
+                }
+
+                h1 {
+                        color: red;
+                        font-size: 128px;
+                        margin: 0px;
+                }
+
+                .gridster {
+                        border: 2px solid #222222;
+                        border-radius: 8px;
                 }
 
                 #main-menu {
@@ -26,9 +42,8 @@
                         margin: auto;
                         flex-direction: column;
                         justify-items: space-around;
-                        align-content: center;
                         width: 80%;
-                        border: 1px solid #222222;
+                        border: 2px solid #222222;
                         padding: 25px;
                         border-radius: 8px;
                         background-color: grey;
@@ -38,7 +53,7 @@
                 #picker-form-id,
                 #panel-picker,
                 #main-menu .button-23 {
-                        width: 95%;
+                        width: 50%;
                         height: 95px;
                         margin: 5% auto;
                         text-align: center;
@@ -55,21 +70,51 @@
                         margin: 5% auto;
                         border-radius: 8px;
                 }
+
+                .gridlink {
+                        display: grid;
+                        justify-content: center;
+                        font-size: 48px;
+                        color: white;
+                }
         </style>
 </head>
 
 <body>
         <div id=main-menu>
+                <h1>RPi4</h1>
                 <form class="color-picker" id="picker-form-id" method="post" action="/panel">
                         <input name="on" id="power-checkbox" type="checkbox" class="button-23" />
                         <input name="color" id="panel-picker" data-format="rgb" data-color-presets="red,pink,green,teal,blue,purple" class="color-preview" value="rgb(255, 0, 0)" />
+                        <button id='setButton' class="button-23" onclick="$('#picker-form-id').submit()">
+                                SET
+                        </button>
                 </form>
-                <button class="button-23" onclick="document.getElementById('picker-form-id').submit()">
-                        <h1>SET</h1>
-                </button>
+                <div class="gridster">
+                        <ul>
+                                <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+                                        <a class="gridlink" href="https://youtube.com">Youtube</a>
+                                </li>
+                                <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+                                        <a class="gridlink" href="https://youtube.com">Youtube</a>
+                                </li>
+                                <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+                                        <a class="gridlink" href="https://youtube.com">Youtube</a>
+                                </li>
+                                <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+                                        <a class="gridlink" href="https://youtube.com">Youtube</a>
+                                </li>
+                        </ul>
+                </div>
         </div>
         <script>
                 var panelPicker = new ColorPicker('#panel-picker')
+                window.onload = () => $(() => {
+                        $(".gridster ul").gridster({
+                                widget_margins: [16, 16],
+                                widget_base_dimensions: [256, 64]
+                        });
+                });
         </script>
 </body>
 
